@@ -1,4 +1,3 @@
-# yichenk-web
 
 > A Vue.js project
 
