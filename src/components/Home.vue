@@ -82,13 +82,6 @@
       }
     },
     mounted() {
-      const queryArticle = new Query('article');
-      queryArticle.find('article')
-        .then((data) => {
-          console.log(data);
-        }).catch(err => {
-        console.log(err);
-      });
       let self = this;
       this.showTitle = true;
       setTimeout(function () {
