@@ -39,14 +39,15 @@
 </template>
 <script>
   import HomeContent from '../components.common/HomeContent';
+
   const Home = {
     data: function () {
       return {
         showTitle: false,
         showInfo: false,
-        showMore:false,
-        isShowContent:false,
-        showSubTitle:false
+        showMore: false,
+        isShowContent: false,
+        showSubTitle: false
       }
     },
     computed: {
@@ -54,40 +55,47 @@
         return this.$store.state.homeTitle
       }
     },
-    methods:{
-      showContent(event){
+    methods: {
+      showContent(event) {
         let self = this;
-        if(event.type === 'click'){
+        if (event.type === 'click') {
           self.isShowContent = true;
           self.showInfo = true;
           return;
         }
-        if(event.wheelDelta>0&&$('.home').scrollTop() === 0){
+        if (event.wheelDelta > 0 && $('.home').scrollTop() === 0) {
           this.isShowContent = false;
           this.showInfo = false;
-        }else if(event.wheelDelta<0){
+        } else if (event.wheelDelta < 0) {
 
-          if(!self.isShowContent){
+          if (!self.isShowContent) {
             self.isShowContent = true;
             self.showInfo = true;
           }
         }
       },
-      scrollHome(event){
-        if(event.srcElement.scrollTop === 0){
+      scrollHome(event) {
+        if (event.srcElement.scrollTop === 0) {
           this.isShowContent = false;
           this.showInfo = false;
         }
       }
     },
     mounted() {
+      const queryArticle = new Query('article');
+      queryArticle.find('article')
+        .then((data) => {
+          console.log(data);
+        }).catch(err => {
+        console.log(err);
+      });
       let self = this;
       this.showTitle = true;
       setTimeout(function () {
         self.showMore = true;
       }, 1100);
     },
-    components:{
+    components: {
       HomeContent
     }
   };
@@ -95,11 +103,11 @@
 </script>
 <style scoped>
 
-  * {
+  *{
     font-family: 宋体;
   }
 
-  h1 {
+  h1{
     font-size: 80px;
     color: #fff;
     position: absolute;
@@ -109,7 +117,7 @@
     padding: 0 20px;
   }
 
-  .top p {
+  .top p{
     font-size: 24px;
     color: #fff;
     position: absolute;
@@ -120,13 +128,13 @@
     letter-spacing: 6px;
   }
 
-  img {
+  img{
     width: 100%;
     min-width: 1430px;
     display: block;
   }
 
-  .home {
+  .home{
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -145,15 +153,17 @@
     width: 100%;
     transition: all 1s ease;
   }
+
   .home.active ._modal{
-    background: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 100%);
   }
 
   .home.active .top{
     height: 100%;
     transform: translateY(-150px);
   }
-  ._modal {
+
+  ._modal{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -170,23 +180,24 @@
     height: 100%;
   }
 
-  .fadeTop-enter-active,.fadeTop-leave-active {
+  .fadeTop-enter-active, .fadeTop-leave-active{
     transition: all 1s ease;
   }
 
-  .fadeTop-enter,.fadeTop-leave-to {
+  .fadeTop-enter, .fadeTop-leave-to{
     opacity: 0;
     transform: translateY(60px);
   }
+
   .showMore i{
     margin-top: 10px;
     animation: top-down 1.5s ease;
-    animation-delay:0s;
-    animation-iteration-count:infinite;
-    animation-direction:alternate;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
   }
 
-  @keyframes top-down {
+  @keyframes top-down{
     0%{
       transform: translateY(0px);
     }
@@ -198,6 +209,7 @@
   .sub-title{
     font-size: 16px;
   }
+
   .showMore{
     position: absolute;
     bottom: 20px;
@@ -226,9 +238,11 @@
   .isShowContent-enter-active{
     transition: all 1.5s ease .3s;
   }
+
   .isShowContent-enter{
     opacity: 0;
   }
+
   .home .content p{
     text-align: left;
     text-indent: 26px;
@@ -238,12 +252,12 @@
     font-size: 18px;
   }
 
-  @media screen and (max-width: 1400px) {
-    h1 {
+  @media screen and (max-width: 1400px){
+    h1{
       font-size: 60px;
     }
 
-    .top p {
+    .top p{
       font-size: 20px;
     }
 
@@ -252,12 +266,13 @@
     }
   }
 
-  @media screen and (max-width: 800px) {
-    h1 {
+  @media screen and (max-width: 800px){
+    h1{
       font-size: 40px;
       padding: 0 5px;
     }
-    .top p {
+
+    .top p{
       font-size: 14px;
       padding: 0 5px;
       letter-spacing: 3px;
