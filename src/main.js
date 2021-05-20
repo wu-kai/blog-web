@@ -10,17 +10,10 @@ import axios from 'axios'
 import VueBlu from 'vue-blu'
 import 'vue-blu/dist/css/vue-blu.min.css'
 import directive from './directives'
-import util from './js/util'
+import util from './libs/util'
 
 require('./css/font-awesome.css');
 require('./css/common.css');
-
-const AV = require('leancloud-storage');
-AV.init({
-  appId: "nxyzr8b8h1EU6jqinnvYhxdO-gzGzoHsz",
-  appKey: "pCb1NCrIuBGGhY4GLxebm6pe",
-  serverURL: "https://nxyzr8b8.lc-cn-n1-shared.com"
-});
 
 Vue.use(VueBlu);
 

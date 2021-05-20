@@ -7,9 +7,9 @@ var bodyParser = require('body-parser');
 var AV = require('leanengine');
 
 AV.init({
-  appId: "nxyzr8b8h1EU6jqinnvYhxdO-gzGzoHsz",
-  appKey: "pCb1NCrIuBGGhY4GLxebm6pe",
-  serverURL: "https://nxyzr8b8.lc-cn-n1-shared.com"
+  appId: process.env.LEANCLOUD_APP_ID || 'nxyzr8b8h1EU6jqinnvYhxdO-gzGzoHsz',
+  appKey: process.env.LEANCLOUD_APP_KEY || 'pCb1NCrIuBGGhY4GLxebm6pe',
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || 'NDzp1Vz88uouK0E5RNCuuNck'
 });
 
 // 如果不希望使用 masterKey 权限，可以将下面一行删除

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import china from '@/js/china.js';
+  import china from '@/libs/china.js';
 
   export default {
     name: 'Map',

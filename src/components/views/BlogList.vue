@@ -72,8 +72,12 @@
     mounted(){
       const self = this;
       this.$store.dispatch('getBlogList')
-        .then(function(success){
-      });
+        .then((data) => {
+          console.log(data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
       self.showHead = true;
       this.musicEl = $('#music');
       this.musicEl[0].volume = 0.013;

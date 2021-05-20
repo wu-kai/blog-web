@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import util from '../js/util';
+  import util from '../libs/util';
 	export default {
 		name: '',
     data:function(){

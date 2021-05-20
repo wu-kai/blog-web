@@ -67,11 +67,8 @@ const actions = {
     })
   },
   getBlogList(context) {
-    return new Article.find(function (resolve, reject) {
-      axios({
-        method: 'GET',
-        url: '/api/blog/findAll'
-      }).then(function (res) {
+    return new Promise(function (resolve, reject) {
+      Article.find().then(function (res) {
         console.log(res);
         if (res.status === 200) {
           context.state.blogList = res.data;
@@ -89,7 +86,7 @@ const actions = {
       axios({
         method: 'GET',
         url: '/api/blog/findByID',
-        params: {id: id}
+        params: { id: id }
       }).then(function (res) {
         if (res.status === 200) {
           resolve(res.data);
@@ -116,11 +113,11 @@ const actions = {
       })
     })
   },
-  uploadFile(context,data){
+  uploadFile(context, data) {
     return axios({
-      method:'post',
-      url:'/api/uploadFile_to_qiniu',
-      data:data
+      method: 'post',
+      url: '/api/uploadFile_to_qiniu',
+      data: data
     });
   }
 

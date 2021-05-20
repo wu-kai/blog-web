@@ -3,8 +3,14 @@ import Vuex from 'vuex';
 import testModule from './test.module.js';
 import blogModule from './blog.module.js';
 import messageModule from './message.module.js';
-
+import AV from 'leancloud-storage'
 Vue.use(Vuex);
+
+AV.init({
+  appId: "nxyzr8b8h1EU6jqinnvYhxdO-gzGzoHsz",
+  appKey: "pCb1NCrIuBGGhY4GLxebm6pe",
+  serverURL: "https://admin.yichenk.com"
+});
 
 const store = new Vuex.Store({
   state:{
