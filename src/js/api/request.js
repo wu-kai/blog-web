@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { APP_ID, APP_KEY, BASE_API_URL } from 'constant/leadCloud'
+import { APP_ID, APP_KEY, BASE_API_URL, LOCAL_URL } from 'constant/leadCloud'
 
 const { isCancel } = axios;
 
 function getInstance() {
   let instance = axios.create({
-    baseURL: `${BASE_API_URL}`,
+    baseURL: `${process.env.NODE_ENV === 'development' ? LOCAL_URL : BASE_API_URL}`,
     timeout: 30000,
     headers: {
       'Cache-Control': 'no-cache',
