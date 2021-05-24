@@ -20,6 +20,7 @@
     "jquery": "^3.3.1",
     "leancloud-storage": "^4.10.1",
     "leanengine": "^3.7.0",
+    "request": "^2.88.2",
     "vue": "^2.5.2",
     "vue-blu": "^0.1.9",
     "vue-router": "^3.0.1",

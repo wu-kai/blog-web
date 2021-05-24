@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+var request = require('request');
 var timeout = require('connect-timeout');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -32,11 +33,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/', function(req, res) {
+app.use('/1.1', function (req, res) {
+  const url = `https://admin.yichenk.com${req.url}`;
+  req.pipe(request(url)).pipe(res);
+});
+
+app.get('/', function (req, res) {
   res.render('index', { currentTime: new Date() });
 });
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   // 如果任何一个路由都没有返回响应，则抛出一个 404 异常给后续的异常处理器
   if (!res.headersSent) {
     var err = new Error('Not Found');
@@ -46,12 +52,12 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-app.use(function(err, req, res, next) { // jshint ignore:line
+app.use(function (err, req, res, next) { // jshint ignore:line
   var statusCode = err.status || 500;
-  if(statusCode === 500) {
+  if (statusCode === 500) {
     console.error(err.stack || err);
   }
-  if(req.timedout) {
+  if (req.timedout) {
     console.error('请求超时: url=%s, timeout=%d, 请确认方法执行耗时很长，或没有正确的 response 回调。', req.originalUrl, err.timeout);
   }
   res.status(statusCode);
