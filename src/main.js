@@ -9,6 +9,14 @@ import VueBlu from 'vue-blu'
 import 'vue-blu/dist/css/vue-blu.min.css'
 import 'js/directives'
 import 'js/util/common'
+import AV from 'leancloud-storage'
+import { APP_ID, APP_KEY, SERVER_URL } from 'constant/leadCloud'
+
+AV.init({
+  appId: APP_ID,
+  appKey: APP_KEY,
+  serverURL: SERVER_URL
+});
 
 require('./css/font-awesome.css');
 require('./css/common.css');
