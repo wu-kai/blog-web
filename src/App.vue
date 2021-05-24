@@ -9,6 +9,7 @@
 <script>
   import NavigationBar from 'components/common/NavigationBar'
   import NavigationMenu from 'components/common/NavigationMenu.vue'
+  import $ from 'jquery'
 
   export default {
     name: 'App',

@@ -18,7 +18,8 @@ module.exports = {
         host: 'localhost:3000',
         secure: false,
       },
-      '/wxJssdk/getJssdk':'http://localhost:3000'
+      '/wxJssdk/getJssdk':'http://localhost:3000',
+      '/1.1': 'https://admin.yichenk.com'
     },
 
     // Various Dev Server settings

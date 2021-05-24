@@ -1,8 +1,5 @@
 import axios from 'axios'
-import AV from 'leancloud-storage'
-
-const { Query } = AV;
-const Article = new Query('article');
+import request from 'api/request'
 
 const state = {
   blogList: [],
@@ -68,17 +65,18 @@ const actions = {
   },
   getBlogList(context) {
     return new Promise(function (resolve, reject) {
-      Article.find().then(function (res) {
-        console.log(res);
-        if (res.status === 200) {
-          context.state.blogList = res.data;
-          resolve();
-        } else {
+      request.get('/classes/article')
+        .then(function (res) {
           console.log(res);
-        }
-      }, function (err) {
-        console.log(err);
-      })
+          if (res.status === 200) {
+            context.state.blogList = res.data;
+            resolve();
+          } else {
+            console.log(res);
+          }
+        }, function (err) {
+          console.log(err);
+        })
     });
   },
   getBlogByID(context, id) {
