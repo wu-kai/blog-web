@@ -8,6 +8,7 @@ import axios from 'axios'
 import VueBlu from 'vue-blu'
 import 'vue-blu/dist/css/vue-blu.min.css'
 import 'js/directives'
+import 'js/util/common'
 
 require('./css/font-awesome.css');
 require('./css/common.css');

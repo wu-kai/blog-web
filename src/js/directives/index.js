@@ -45,8 +45,8 @@ Vue.directive('mouseOver', {
     let $showEl = $('<span class="mouseOverShowMessage">' + message + '</span>');
     $(el).on('mouseover', function () {
       $showEl.css({
-        left: event.pageX + 14 + 'px',
-        top: event.pageY + 16 + 'px',
+        left: event.pageX - 70 + 'px',
+        top: event.pageY + 30 + 'px',
         display: 'block'
       });
       $('html').append($showEl)
@@ -54,8 +54,8 @@ Vue.directive('mouseOver', {
 
     $(el).on('mousemove', function () {
       $showEl.css({
-        left: event.pageX + 14 + 'px',
-        top: event.pageY + 16 + 'px',
+        left: event.pageX - 70 + 'px',
+        top: event.pageY + 30 + 'px',
       });
     });
 

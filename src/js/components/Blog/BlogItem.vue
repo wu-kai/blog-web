@@ -9,9 +9,11 @@
     </div>
     <div class="item-foot">
       <div class="item-labels">
-          <tag type="info" rounded v-text="label" v-for="label in labels" class="item-label" :key="label"></tag>
+        <tag type="info" rounded v-text="label" v-for="label in labels" class="item-label" :key="label"></tag>
       </div>
-      <div class="readAll" @click="goDetails()"><tag type="primary">阅读全文 >></tag></div>
+      <div class="readAll" @click="goDetails()">
+        <tag type="primary">阅读全文 >></tag>
+      </div>
     </div>
   </div>
 </template>
@@ -22,39 +24,27 @@
     name: 'BlogItem',
     props: ['blog'],
     computed: {
-      title() {
-        return (new Date(this.blog.createTime)).Format('yyyy-MM-dd hh:mm:ss')
-      },
       info() {
-        return (this.blog.info || '作者太懒，没有写内容预览')
+        return (this.blog.introduction || '作者太懒，没有写内容预览')
       },
       time() {
-        return (new Date(this.blog.createTime)).Format('yyyy-MM-dd hh:mm:ss')
+        return (new Date(this.blog.createdAt)).Format('yyyy-MM-dd hh:mm:ss')
       },
       updateTime() {
-        return '更新日期 : ' + (new Date(this.blog.updated||'')).Format('yyyy-MM-dd hh:mm:ss')
+        return '更新日期 : ' + (new Date(this.blog.updatedAt || '')).Format('yyyy-MM-dd hh:mm:ss')
       },
       imgUrl() {
         const defaultUrl = 'http://cdn.yichenk.com/default-blog-img-1.jpg';
         return this.blog.createTime.image || defaultUrl
       },
-      labels(){
-        let arr = [];
-        _.each(this.blog.label,function(item){
-          if(item.indexOf('，')!==-1){
-            arr = arr.concat(item.split('，'));
-          }
-          if(item.indexOf(',')!==-1){
-            arr = arr.concat(item.split(','));
-          }
-        });
-        return arr;
+      labels() {
+        return this.blog.label
       }
     },
-    methods:{
-      goDetails(){
+    methods: {
+      goDetails() {
         this.$store.state.blog.currentBlog = this.blog;
-        this.$router.push('/blogList/BlogDetailsBox/'+this.blog._id)
+        this.$router.push('/blogList/BlogDetailsBox/' + this.blog._id)
       }
     }
   }
@@ -64,7 +54,8 @@
   *{
     font-family: 宋体;
   }
-  .blog {
+
+  .blog{
     width: 100%;
     margin: 0 auto 20px;
     position: relative;
@@ -79,17 +70,17 @@
   }
 
   /*.blog:hover {*/
-    /*background: rgba(255, 255, 255, 0.6);*/
-    /*cursor: pointer;*/
-    /*box-shadow: 0px 0 26px 2px #a2a2a2;*/
-    /*transform: translateY(-1px);*/
+  /*background: rgba(255, 255, 255, 0.6);*/
+  /*cursor: pointer;*/
+  /*box-shadow: 0px 0 26px 2px #a2a2a2;*/
+  /*transform: translateY(-1px);*/
   /*}*/
 
-  .blog:hover .img img {
+  .blog:hover .img img{
     width: 120%;
   }
 
-  .img {
+  .img{
     width: 180px;
     height: 120px;
     float: left;
@@ -97,19 +88,22 @@
     border-radius: 3px;
   }
 
-  .img img {
+  .img img{
     display: block;
     width: 100%;
   }
+
   .more{
     width: 100%;
     padding: 16px 0;
     border-bottom: 1px solid #989898;
 
   }
+
   .item-head{
     overflow: hidden;
   }
+
   h1{
     float: left;
     text-align: left;
@@ -117,23 +111,27 @@
     font-weight: 600;
     line-height: 30px;
   }
+
   .item-head .time{
     float: right;
     font-size: 13px;
     color: #94928e;
     padding-top: 10px;
   }
-  .more>p{
+
+  .more > p{
     text-align: left;
     padding: 0 20px;
     text-indent: 20px;
     font-family: cursive;
     font-size: 18px;
   }
+
   .item-foot{
     overflow: hidden;
     padding: 10px 0;
   }
+
   .item-foot .item-labels{
     overflow: hidden;
     float: left;
@@ -141,6 +139,7 @@
     width: calc(100% - 100px);
     text-align: left;
   }
+
   .item-foot .item-label{
     font-weight: 500;
     color: #ffffff;
@@ -148,14 +147,16 @@
     margin-right: 10px;
     margin-top: 5px;
   }
+
   .item-foot .readAll{
     float: right;
   }
+
   .item-foot .readAll:hover{
     cursor: pointer;
   }
 
-  @media screen and (max-width:400px){
+  @media screen and (max-width: 400px){
     .blog{
 
     }

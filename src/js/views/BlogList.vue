@@ -1,6 +1,6 @@
 <template>
   <div class="blog-list-box">
-    <audio id="music" :src="musicList[0]" autoplay></audio>
+    <audio id="music" :src="musicList[0]" autoplay="true"></audio>
     <div class="left">
       <div class="content">
         <div class="overlay">
@@ -36,7 +36,7 @@
       return {
         showHead:false,
         musicEl:'',
-        isPaused:false,
+        isPaused:true,
         timer:''
       }
     },
@@ -82,7 +82,6 @@
       this.musicEl = $('#music');
       this.musicEl[0].volume = 0.013;
       this.musicEl[0].load();
-      this.musicEl[0].play();
       this.musicEl.on('ended',function(){
         self.changeMusic();
       })
@@ -201,6 +200,7 @@
     top:12px;
     right:12px;
     animation-play-state: running;
+    z-index: 13;
   }
   .overlay img:hover{
     cursor: pointer;

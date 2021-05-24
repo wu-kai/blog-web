@@ -19,7 +19,11 @@ module.exports = {
         secure: false,
       },
       '/wxJssdk/getJssdk':'http://localhost:3000',
-      '/1.1': 'https://admin.yichenk.com'
+      '/1.1': {
+        target: 'https://admin.yichenk.com',
+        // secure: false,
+        changeOrigin: true
+      }
     },
 
     // Various Dev Server settings

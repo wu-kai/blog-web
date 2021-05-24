@@ -66,14 +66,9 @@ const actions = {
   getBlogList(context) {
     return new Promise(function (resolve, reject) {
       request.get('/classes/article')
-        .then(function (res) {
-          console.log(res);
-          if (res.status === 200) {
-            context.state.blogList = res.data;
-            resolve();
-          } else {
-            console.log(res);
-          }
+        .then(function ({ data }) {
+          context.state.blogList = data.results;
+          resolve(data.results);
         }, function (err) {
           console.log(err);
         })

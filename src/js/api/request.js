@@ -14,6 +14,7 @@ function getInstance() {
   });
 
   instance.interceptors.request.use((config) => {
+    config.withCredentials = true;
     let url = config.url;
     config.headers = {
       ...config.headers,
