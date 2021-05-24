@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import Map from '../components.common/Map.vue';
+  import Map from 'components/common/Map.vue';
 
   export default {
     name: "HomeContent",
@@ -201,8 +201,4 @@
       height: 240px;
     }
   }
-
-
-
-
 </style>

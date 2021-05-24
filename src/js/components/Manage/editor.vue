@@ -4,11 +4,11 @@
 
 <script>
 
-  require('../../static/lib/ueditor-utf8-php/themes/default/css/ueditor.css');
-  require('../../static/lib/ueditor-utf8-php/ueditor.config');
-  require('../../static/lib/ueditor-utf8-php/ueditor.all');
-  require('../../static/lib/ueditor-utf8-php/ueditor.parse.min');
-  require('../../static/lib/ueditor-utf8-php/lang/zh-cn/zh-cn');
+  require('static/lib/ueditor-utf8-php/themes/default/css/ueditor.css');
+  require('static/lib/ueditor-utf8-php/ueditor.config');
+  require('static/lib/ueditor-utf8-php/ueditor.all');
+  require('static/lib/ueditor-utf8-php/ueditor.parse.min');
+  require('static/lib/ueditor-utf8-php/lang/zh-cn/zh-cn');
   import {mapState} from 'vuex';
 
   export default {

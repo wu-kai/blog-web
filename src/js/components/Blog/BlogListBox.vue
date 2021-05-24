@@ -19,7 +19,7 @@
 
 <script>
 
-  import BlogItem from '../components.common/BlogItem.vue'
+  import BlogItem from 'components/Blog/BlogItem.vue'
   export default {
     name: 'BlogListBox',
     data:function(){

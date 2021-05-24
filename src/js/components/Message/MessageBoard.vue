@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import MessageItem from '../components.common/MessageItem.vue'
+  import MessageItem from 'components/Message/MessageItem.vue'
 
   export default {
     name: '',

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import NavigationBar from './components.common/NavigationBar.vue'
-  import NavigationMenu from './components.common/NavigationMenu.vue'
+  import NavigationBar from 'components/common/NavigationBar'
+  import NavigationMenu from 'components/common/NavigationMenu.vue'
 
   export default {
     name: 'App',

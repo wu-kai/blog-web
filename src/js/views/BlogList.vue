@@ -4,7 +4,7 @@
     <div class="left">
       <div class="content">
         <div class="overlay">
-          <img src="../images/music.png" alt=""
+          <img src="../../../src/images/music.png" alt=""
                v-mouseOver="'双击可随机切换'"
                @click="pausedMusic()"
                @dblclick="changeMusic()"
@@ -13,7 +13,7 @@
         <div class="header-box">
           <div class="header">
             <transition name="showHead">
-              <img v-if="showHead" src="../images/header.jpg" alt="">
+              <img v-if="showHead" src="../../../src/images/header.jpg" alt="">
             </transition>
           </div>
           <h3>KevinWu</h3>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import BlogListBox from '../components.common/BlogListBox'
+  import BlogListBox from 'components/Blog/BlogListBox'
   export default {
     name: 'BlogList',
     data:function(){

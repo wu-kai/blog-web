@@ -34,7 +34,7 @@
 </template>
 <script>
   import {mapState} from 'vuex';
-  import editor from '../cpmponents.utils/editor.vue';
+  import editor from 'js/components/Manage/editor.vue';
 
   const CreateBlog = {
     data: function () {

@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Manage from 'views/Manage'
-import CreateBlog from 'manage/CreateBlog'
-import Index from 'manage/Index'
+import CreateBlog from 'js/components/Manage/CreateBlog'
+import Index from 'js/components/Manage/Index'
 import Home from 'views/Home'
 import BlogList from 'views/BlogList'
 import Resume from 'views/Resume'
-import MessageBoard from 'views/MessageBoard'
-import BlogListBox from 'component/BlogListBox'
-import BlogDetailsBox from 'component/BlogDetailsBox'
+import MessageBoard from 'components/Message/MessageBoard'
+import BlogListBox from 'components/Blog/BlogListBox'
+import BlogDetailsBox from 'components/Blog/BlogDetailsBox'
 
 Vue.use(Router);
 

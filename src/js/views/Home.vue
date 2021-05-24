@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-  import HomeContent from '../components.common/HomeContent';
+  import HomeContent from 'components/Home/HomeContent';
 
   const Home = {
     data: function () {
