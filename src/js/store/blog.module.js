@@ -64,6 +64,10 @@ const actions = {
     })
   },
   getBlogList(context) {
+    axios({
+      method: 'GET',
+      url: '/api',
+    });
     return new Promise(function (resolve, reject) {
       request.get('/classes/article')
         .then(function ({ data }) {

@@ -1,4 +1,5 @@
 'use strict';
+
 var express = require('express');
 var request = require('request');
 var timeout = require('connect-timeout');
@@ -10,6 +11,7 @@ var AV = require('leanengine');
 AV.init({
   appId: process.env.LEANCLOUD_APP_ID || 'nxyzr8b8h1EU6jqinnvYhxdO-gzGzoHsz',
   appKey: process.env.LEANCLOUD_APP_KEY || 'pCb1NCrIuBGGhY4GLxebm6pe',
+  serverURL: process.env.LEANCLOUD_SERVER_URL || 'https://admin.yichenk.com',
   masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || 'NDzp1Vz88uouK0E5RNCuuNck'
 });
 
@@ -33,13 +35,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/1.1', function (req, res) {
+app.get('/1.1', function (req, res) {
   const url = `https://admin.yichenk.com${req.url}`;
   req.pipe(request(url)).pipe(res);
 });
 
 app.get('/', function (req, res) {
   res.render('index', { currentTime: new Date() });
+});
+
+app.use('/api', function (req, res) {
+  res.send('这里什么都没有');
 });
 
 app.use(function (req, res, next) {
