@@ -35,13 +35,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get('/1.1', function (req, res) {
-  const url = `https://admin.yichenk.com${req.url}`;
-  req.pipe(request(url)).pipe(res);
-});
-
 app.get('/', function (req, res) {
   res.render('index', { currentTime: new Date() });
+});
+
+app.use('/1.1', function (req, res) {
+  const url = `https://admin.yichenk.com${req.url}`;
+  req.pipe(request(url)).pipe(res);
 });
 
 app.use('/api', function (req, res) {
