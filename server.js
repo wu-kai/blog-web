@@ -40,7 +40,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/1.1', function (req, res) {
-  const url = `https://admin.yichenk.com${req.url}`;
+  const url = `https://admin.yichenk.com/1.1${req.url}`;
   req.pipe(request(url)).pipe(res);
 });
 
