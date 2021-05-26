@@ -76,17 +76,14 @@ const actions = {
   },
   getBlogByID(context, id) {
     return new Promise(function (resolve, reject) {
-      axios({
-        method: 'GET',
-        url: '/api/blog/findByID',
-        params: { id: id }
-      }).then(function (res) {
-        if (res.status === 200) {
-          resolve(res.data);
-        }
-      }, function (err) {
-        console.log(err);
-      })
+      request.get(`classes/article/${id}`)
+        .then(function (res) {
+          if (res.status === 200) {
+            resolve(res.data);
+          }
+        }, function (err) {
+          console.log(err);
+        })
     })
   },
   validate(context, value) {

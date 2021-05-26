@@ -10,7 +10,7 @@
         </div>
         <div class="info" v-text="info"></div>
         <div class="content">
-          <p v-html="blog.body"></p>
+          <p v-html="blog.content"></p>
         </div>
         <div class="item-labels">
             <span v-for="label in labels" class="item-label" :key="label">
@@ -53,28 +53,19 @@
     },
     computed: {
       info() {
-        return (this.blog.info || '作者太懒，没有写内容预览')
+        return (this.blog.introduction || '作者太懒，没有写内容预览')
       },
       author() {
         return '作者 : ' + this.blog.author
       },
       startTime() {
-        return '创建于 : ' + (new Date(this.blog.createTime)).Format('yyyy-MM-dd hh:mm:ss')
+        return '创建于 : ' + (new Date(this.blog.createdAt)).Format('yyyy-MM-dd hh:mm:ss')
       },
       updateTime() {
-        return '更新于 : ' + (new Date(this.blog.updated || '')).Format('yyyy-MM-dd hh:mm:ss')
+        return '更新于 : ' + (new Date(this.blog.updatedAt || '')).Format('yyyy-MM-dd hh:mm:ss')
       },
       labels() {
-        let arr = [];
-        _.each(this.blog.label, function (item) {
-          if (item.indexOf('，') !== -1) {
-            arr = arr.concat(item.split('，'));
-          }
-          if (item.indexOf(',') !== -1) {
-            arr = arr.concat(item.split(','));
-          }
-        });
-        return arr;
+        return this.blog.label;
       }
     },
     components: {},
@@ -113,6 +104,7 @@
         this.id = this.$route.params.id;
         this.$store.dispatch('getBlogByID', this.id)
           .then(function (result) {
+            console.log(result);
             self.blog = result;
           }, function (err) {
             console.log(err);
@@ -154,7 +146,7 @@
   }
 
   .content {
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0);
     padding: 20px;
     border-radius: 10px;
     box-sizing: border-box;

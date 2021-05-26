@@ -71,13 +71,7 @@
     },
     mounted(){
       const self = this;
-      this.$store.dispatch('getBlogList')
-        .then((data) => {
-          console.log(data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$store.dispatch('getBlogList');
       self.showHead = true;
       this.musicEl = $('#music');
       this.musicEl[0].volume = 0.013;
