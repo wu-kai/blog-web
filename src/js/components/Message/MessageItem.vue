@@ -5,7 +5,7 @@
       <span class="time" v-text="time"></span>
       <span class="city" v-text="item.city?'在'+item.city+'说':'说'"></span>
     </div>
-    <p v-text="item.comment"></p>
+    <p v-text="item.content"></p>
   </div>
 </template>
 

@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Manage from 'views/Manage'
-import CreateBlog from 'js/components/Manage/CreateBlog'
-import Index from 'js/components/Manage/Index'
+//home
 import Home from 'views/Home'
-import BlogList from 'views/BlogList'
-import Resume from 'views/Resume'
-import MessageBoard from 'components/Message/MessageBoard'
+//blog
+import Blog from 'views/Blog'
 import BlogListBox from 'components/Blog/BlogListBox'
 import BlogDetailsBox from 'components/Blog/BlogDetailsBox'
+//Resume
+import Resume from 'views/Resume'
+//MessageBoard
+import MessageBoard from 'views/MessageBoard'
+//admin
+import Manage from 'views/Manage'
+import Index from 'js/components/Manage/Index'
+import CreateBlog from 'js/components/Manage/CreateBlog'
+
 
 Vue.use(Router);
 
@@ -27,7 +33,7 @@ export default new Router({
     {path: '/resume', name: 'resume', component: Resume},
     {path: '/messageBoard', name: 'messageBoard', component: MessageBoard},
     {
-      path: '/blogList', component: BlogList,
+      path: '/blogList', component: Blog,
       children: [
         {path: '', component: BlogListBox},
         {path: 'blogDetailsBox/:id', component: BlogDetailsBox},

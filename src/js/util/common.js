@@ -14,5 +14,37 @@ Date.prototype.Format = function (fmt) {
   return fmt;
 };
 
-
 export default {}
+
+export const getPosition = (success, error) => {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const longitude = position.coords.longitude;
+      const latitude = position.coords.latitude;
+      // 百度地图API功能
+      const map = new BMap.Map("allmap");
+      const point = new BMap.Point(longitude, latitude);
+      map.centerAndZoom(point, 12);
+      //浏览器定位
+      const geolocation = new BMap.Geolocation();
+      geolocation.getCurrentPosition(function (r) {
+        if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+          const mk = new BMap.Marker(r.point);
+          map.addOverlay(mk);
+          map.panTo(r.point);
+          const gc = new BMap.Geocoder();
+          const pointAdd = new BMap.Point(r.point.lng, r.point.lat);
+          gc.getLocation(pointAdd, function (rs) {
+            // 百度地图解析城市名
+            success(rs.addressComponents);
+          })
+        } else {
+          alert('failed' + this.getStatus());
+        }
+      }, { enableHighAccuracy: true });
+    },
+    function () {
+      error();
+    },
+  )
+};

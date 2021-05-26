@@ -1,22 +1,15 @@
-import axios from 'axios'
+import request from 'api/request'
 
 const state = {};
 
 const mutations = {};
 
 const actions = {
-  getAllMessage:function(context){
-    return axios({
-      url:'/api/comment/findAll',
-      method:'get'
-    })
+  getAllMessage:function(){
+    return request.get('classes/messageBoard')
   },
   addMessage:function(context,data){
-    return axios({
-      url:'api/comment/createComment',
-      method:'post',
-      data:data
-    })
+    return request.post('classes/messageBoard', data)
   }
 };
 

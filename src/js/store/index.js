@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import testModule from './test.module.js';
 import blogModule from './blog.module.js';
 import messageModule from './message.module.js';
 Vue.use(Vuex);
@@ -33,7 +32,6 @@ const store = new Vuex.Store({
     }
   },
   modules:{
-    test:testModule,
     blog:blogModule,
     message:messageModule
   }
