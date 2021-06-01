@@ -7,9 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "local": "set NODE_ENV=development&&npm run dev",
-    "start": "node server.js",
-    "build": "set NODE_ENV=production&&node build/build.js",
-    "deploy": "npm run build&&lean deploy"
+    "build": "set NODE_ENV=production&&node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
