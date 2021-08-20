@@ -11,57 +11,47 @@ const state = {
   editingBlogContent: '',
   currentBlog: {}
 };
-const mutations = {
-  saveTempBlogContent(state, content) {
-    state.editingBlogContent = content;
-  },
-  updateEditingBlog(state, blog) {
-    state.editingBlogTitle = blog.title || '';
-    state.editingBlogLabels = blog.labels || '';
-    state.editingBlogImage = blog.image || '';
-    state.editingBlogAuthor = blog.author || '';
-    state.editingBlogInfo = blog.info || '';
-  },
-  initEditingBlog(state) {
-    state.editingBlogTitle = '';
-    state.editingBlogLabels = '';
-    state.editingBlogContent = '';
-    state.editingBlogImage = '';
-    state.editingBlogAuthor = '';
-    state.editingBlogInfo = '';
-  }
-};
+const mutations = {};
 const actions = {
-  createBlog(context) {
-    const blog = {
-      title: context.state.editingBlogTitle,
-      author: context.state.editingBlogAuthor,
-      body: context.state.editingBlogContent,
-      label: context.state.editingBlogLabels,
-      image: context.state.editingBlogImage,
-      info: context.state.editingBlogInfo,
-    };
-    return axios({
-      method: 'POST',
-      url: '/api/blog/createBlog',
-      data: blog
-    })
+  createBlog(context, blog) {
+    return new Promise((resolve, reject) => {
+      request.post(`/classes/article`, {
+        title: blog.title,
+        author: blog.author,
+        content: blog.content,
+        label: blog.label.split(','),
+        image: blog.image,
+        introduction: blog.introduction,
+        subtitle: blog.subtitle,
+      })
+        .then(({ data }) => {
+          console.log(data);
+          resolve(data.results);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    });
   },
-  updateBlog(context, id) {
-    const blog = {
-      title: context.state.editingBlogTitle,
-      author: context.state.editingBlogAuthor,
-      body: context.state.editingBlogContent,
-      label: context.state.editingBlogLabels,
-      image: context.state.editingBlogImage,
-      info: context.state.editingBlogInfo,
-    };
-    blog.id = id;
-    return axios({
-      method: 'POST',
-      url: '/api/blog/editBlog',
-      data: blog
-    })
+  updateBlog(context, blog) {
+    return new Promise((resolve, reject) => {
+      request.put(`/classes/article/${blog.objectId}`, {
+        title: blog.title,
+        author: blog.author,
+        content: blog.content,
+        label: blog.label,
+        image: blog.image,
+        introduction: blog.introduction,
+        subtitle: blog.subtitle,
+      })
+        .then(({ data }) => {
+          console.log(data);
+          resolve(data.results);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    });
   },
   getBlogList(context) {
     return new Promise(function (resolve, reject) {
@@ -77,10 +67,9 @@ const actions = {
   getBlogByID(context, id) {
     return new Promise(function (resolve, reject) {
       request.get(`classes/article/${id}`)
-        .then(function (res) {
-          if (res.status === 200) {
-            resolve(res.data);
-          }
+        .then(function ({ data }) {
+          context.state.currentBlog = data.results;
+          resolve(data);
         }, function (err) {
           console.log(err);
         })

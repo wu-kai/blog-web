@@ -36,7 +36,7 @@
         },50);
       });
       self.editor.addListener('contentChange', function () {
-        self.$store.commit('saveTempBlogContent', self.editor.getContent());
+        self.$emit('onChange', self.editor.getContent());
       });
     },
     beforeDestroy() {

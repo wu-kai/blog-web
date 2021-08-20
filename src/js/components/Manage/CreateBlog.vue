@@ -6,7 +6,7 @@
     </div>
     <div class="form-control">
       <span>labels:</span>
-      <input type="text" v-model="blog.labels" v-inputFocus="inputFocusBorderColor">
+      <input type="text" v-model="blog.label" v-inputFocus="inputFocusBorderColor">
     </div>
     <div class="form-control">
       <span>author:</span>
@@ -19,11 +19,11 @@
     </div>
     <div class="form-control">
       <span>info:</span>
-      <textarea v-inputFocus="inputFocusBorderColor" v-model="blog.info"></textarea>
+      <textarea v-inputFocus="inputFocusBorderColor" v-model="blog.introduction"></textarea>
     </div>
     <div class="form-control">
       <div class="editor">
-        <editor id="ueditor-demo2" height="320" :content="blog.body"></editor>
+        <editor id="ueditor-demo2" height="320" :content="blog.content" @onChange="changeContent"></editor>
       </div>
     </div>
     <div class="form-control">
@@ -40,15 +40,7 @@
     data: function () {
       return {
         inputFocusBorderColor: '#9fa8da',
-        blog: {
-          title: '',
-          labels: '',
-          image: '',
-          author: '',
-          info: '',
-          body: ''
-        },
-        id: ''
+        blog: {},
       }
     },
     computed: {
@@ -65,14 +57,17 @@
       editor: editor
     },
     methods: {
+      changeContent(content) {
+        this.blog.content = content
+      },
       save() {
         const self = this;
-        const submit = this.id ? 'updateBlog' : 'createBlog';
-        this.$store.commit('updateEditingBlog', this.blog);
-        this.$store.dispatch(submit, self.id).then(function (res) {
+        const submit = this.blog.objectId ? 'updateBlog' : 'createBlog';
+        console.log(this.blog);
+        this.$store.dispatch(submit, self.blog).then(function (res) {
           if (res.status === 200) {
             self.$notify.success({
-              content: self.id ? '修改成功' : '创建成功',
+              content: self.objectId ? '修改成功' : '创建成功',
               duration: 3000
             });
             setTimeout(function () {
@@ -105,14 +100,7 @@
         this.id = this.$route.params.id;
         this.$store.dispatch('getBlogByID', this.id)
           .then(function (result) {
-            self.blog = {
-              title: result.title || '',
-              labels: result.label.join(',') || '',
-              image: result.image || '',
-              author: result.author || '',
-              body: result.body || '',
-              info: result.info || ''
-            };
+            self.blog = result;
           }, function (err) {
             console.log(err);
           })

@@ -79,7 +79,7 @@
           this.$store.dispatch('validate', this.key)
             .then(function (data) {
               if (data.result) {
-                self.$router.push('/manage/createBlog/' + self.blog._id)
+                self.$router.push('/manage/createBlog/' + self.blog.objectId)
               } else {
                 self.$notify.danger({
                   content: '你没有权限进行修改',
@@ -104,7 +104,6 @@
         this.id = this.$route.params.id;
         this.$store.dispatch('getBlogByID', this.id)
           .then(function (result) {
-            console.log(result);
             self.blog = result;
           }, function (err) {
             console.log(err);

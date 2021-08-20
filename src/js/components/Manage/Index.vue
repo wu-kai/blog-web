@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  import { uploadImage } from 'js/util/common'
 	export default {
 		name: '',
     data:function(){
@@ -38,8 +39,7 @@
         this.imgUrlList.push(url);
       },
       selectImg(e){
-        console.dir(e.target);
-        console.log(e.srcElement.files);
+        uploadImage(e.srcElement.files)
       }
     },
 	}

@@ -1,3 +1,5 @@
+import request from "@/js/api/request";
+
 Date.prototype.Format = function (fmt) {
   var o = {
     "M+": this.getMonth() + 1,
@@ -44,9 +46,17 @@ export const getPosition = (success, error) => {
     }, { enableHighAccuracy: true });
   };
   const errorCallback = () => {
-    console.log('error');
     error();
   };
-  console.log(navigator);
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+};
+
+export const uploadImage = (file) => {
+  request('/api/uploadFile_to_qiniu', file)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 };
